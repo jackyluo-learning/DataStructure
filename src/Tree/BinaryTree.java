@@ -2,6 +2,7 @@ package Tree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 public class BinaryTree {
 
@@ -68,63 +69,3 @@ public class BinaryTree {
 
 }
 
-class BinaryTreeNode<T> {
-    public BinaryTreeNode left;
-
-    public BinaryTreeNode right;
-
-    public T data;
-
-    public BinaryTreeNode(BinaryTreeNode left, BinaryTreeNode right) {
-        this.left = left;
-        this.right = right;
-    }
-
-    public BinaryTreeNode(T data) {
-        this(null, null);
-        this.data = data;
-    }
-
-    public BinaryTreeNode() {
-    }
-
-    public T getData(){
-        return data;
-    }
-
-    public void setLeft(BinaryTreeNode left) {
-        this.left = left;
-    }
-
-    public void setRight(BinaryTreeNode right) {
-        this.right = right;
-    }
-
-    public BinaryTreeNode getLeft() {
-        return left;
-    }
-
-    public BinaryTreeNode getRight() {
-        return right;
-    }
-
-    public void insertLeft(String value) {
-        if (this.left == null) {
-            setLeft(new BinaryTreeNode(value));
-        } else {
-            BinaryTreeNode newNode = new BinaryTreeNode(value);
-            newNode.left = this.left;
-            this.left = newNode;
-        }
-    }
-
-    public void insertRight(String value) {
-        if (this.right == null) {
-            setRight(new BinaryTreeNode(value));
-        } else {
-            BinaryTreeNode newNode = new BinaryTreeNode(value);
-            newNode.right = this.right;
-            this.right = newNode;
-        }
-    }
-}

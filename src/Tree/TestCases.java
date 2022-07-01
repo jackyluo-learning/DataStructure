@@ -7,7 +7,7 @@ import java.util.LinkedList;
 public class TestCases {
     @Test
     public void testBinaryTree() {
-        BinaryTreeNode<String> nodea = new BinaryTreeNode("a");
+        BinaryTreeNode<String> nodea = new BinaryTreeNode<>("a");
         nodea.insertLeft("b");
         nodea.insertRight("c");
 
