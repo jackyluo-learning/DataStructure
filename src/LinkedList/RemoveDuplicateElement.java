@@ -7,9 +7,9 @@ import java.util.HashSet;
 public class RemoveDuplicateElement {
     public LinkedList removeDuplicateElement(LinkedList linkedList){
         HashSet<Integer> hashSet = new HashSet<>();
-        LinkedList.Node node = linkedList.head;
-        LinkedList.Node pre = node;
-        LinkedList.Node curr;
+        Node node = linkedList.head;
+        Node pre = node;
+        Node curr;
         while(node != null){
             curr = node;
             if(hashSet.contains(curr.data)){

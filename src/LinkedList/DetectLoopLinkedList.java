@@ -8,8 +8,8 @@ public class DetectLoopLinkedList {
 
 
     public boolean detectLoopLinkedList(LinkedList linkedList) {
-        HashMap<LinkedList.Node, LinkedList.Node> hashMap = new HashMap<>();
-        LinkedList.Node node = linkedList.head;
+        HashMap<Node, Node> hashMap = new HashMap<>();
+        Node node = linkedList.head;
         while (node != null) {
             if (hashMap.containsKey(node.next)) return true;
             hashMap.put(node, node.next);
@@ -19,9 +19,9 @@ public class DetectLoopLinkedList {
     }
 
     public boolean detectLoopLinkedList1(LinkedList linkedList) {
-        LinkedList.Node curr = linkedList.head;
-        LinkedList.Node slow = curr;
-        LinkedList.Node fast = curr;
+        Node curr = linkedList.head;
+        Node slow = curr;
+        Node fast = curr;
         while (fast != null && slow != null) {
             slow = slow.next;
             fast = fast.next.next;
