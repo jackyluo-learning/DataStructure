@@ -2,6 +2,9 @@ package LinkedList;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MergeSortedLists {
     /*
     Merge two sorted linked lists and return it as a new list.
@@ -40,50 +43,66 @@ public class MergeSortedLists {
         head2 = insert(head2, 10);
         head2 = insert(head2, 11);
         head2 = insert(head2, 15);
+        ListNode head3 = new ListNode(2);
+        head3 = insert(head3, 4);
+        head3 = insert(head3, 7);
+        head3 = insert(head3, 14);
+        head3 = insert(head3, 17);
         printList(head);
         System.out.println();
         printList(head2);
         System.out.println();
-        printFromLast(head2);
-        System.out.println();
-        ListNode head3 = mergeList3(head, head2);
         printList(head3);
+        System.out.println();
+//        ListNode head4 = mergeTwoList1(head2, head2);
+//        printList(head4);
+        System.out.println();
+
+        ListNode[] lists = new ListNode[3];
+        lists[0] = head;
+        lists[1] = head2;
+        lists[2] = head3;
+        ListNode head5 = mergeKListsWithDAC(lists);
+        printList(head5);
     }
 
-
-    public ListNode mergeSortedList1(ListNode l1, ListNode l2) {
-        ListNode current1 = l1;
-        ListNode current2 = l2;
-        ListNode lastNode = null;
-        ListNode firstNode = null;
-        while (current1 != null || current2 != null) {
-            ListNode newNode = null;
-            if (current1 == null) {
-                newNode = new ListNode(current2.val);
-                current2 = current2.next;
-            } else if (current2 == null) {
-                newNode = new ListNode(current1.val);
-                current1 = current1.next;
-            } else if (current1.val >= current2.val) {
-                newNode = new ListNode(current2.val);
-                current2 = current2.next;
+    /**
+     * 迭代方式
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public ListNode mergeTwoList1 (ListNode list1, ListNode list2) {
+        ListNode fakeHead = new ListNode(0);
+        ListNode tail = fakeHead;
+        ListNode l1 = list1;
+        ListNode l2 = list2;
+        while (l1 != null || l2 != null) {
+            if (l1 == null) {
+                tail.next = l2;
+                l2 = l2.next;
+            } else if (l2 == null) {
+                tail.next = l1;
+                l1 = l1.next;
+            } else if (l1.val <= l2.val) {
+                tail.next = l1;
+                l1 = l1.next;
             } else {
-                newNode = new ListNode(current1.val);
-                current1 = current1.next;
+                tail.next = l2;
+                l2 = l2.next;
             }
-            if (firstNode == null) {
-                firstNode = newNode;
-            }
-            if (lastNode == null) {
-                lastNode = newNode;
-            } else {
-                lastNode.next = newNode;
-                lastNode = newNode;
-            }
+            tail = tail.next;
         }
-        return firstNode;
+        return fakeHead.next;
     }
 
+
+    /**
+     * 递归方式
+     * @param l1
+     * @param l2
+     * @return
+     */
     public ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
         ListNode current1 = l1;
         ListNode current2 = l2;
@@ -100,35 +119,38 @@ public class MergeSortedLists {
         }
     }
 
-    public ListNode mergeList3(ListNode l1, ListNode l2) {
-        ListNode head;
-        if(l1 == null) return l2;
-        if(l2 == null) return l1;
-        if(l1.val < l2.val){
-            head = l1;
-            l1 = l1.next;
-        }else{
-            head = l2;
-            l2 = l2.next;
+    /**
+     * 遍历法
+     * @param listNodes
+     * @return
+     */
+    public ListNode mergeKLists (ListNode[] listNodes) {
+        ListNode ans = null;
+        for (int i = 0; i < listNodes.length; i++) {
+            ans = mergeTwoList1(ans, listNodes[i]);
+            System.out.print(i + ": ");
+            printList(ans);
+            System.out.println();
         }
-        ListNode prev = head;
-        while (l1 != null || l2 != null) {
-            if (l2 == null) {
-                prev.next = l1;
-                l1 = l1.next;
-            } else if (l1 == null) {
-                prev.next = l2;
-                l2 = l2.next;
-            } else if (l1.val < l2.val) {
-                prev.next = l1;
-                l1 = l1.next;
-            } else {
-                prev.next = l2;
-                l2 = l2.next;
-            }
-            prev = prev.next;
+        System.out.println(ans);
+        return ans;
+    }
+
+    /**
+     * 分治法
+     * @return
+     */
+    public ListNode mergeKListsWithDAC (ListNode[] lists) {
+        return merge(lists, 0, lists.length - 1);
+    }
+
+    public ListNode merge (ListNode[] list, int l, int r) {
+        if (l == r) {
+            return list[l];
         }
-        return head;
+        if (l > r) return null;
+        int mid = l + (r - l) / 2;
+        return mergeTwoList1(merge(list, l, mid), merge(list, mid + 1, r));
     }
 
     public void printList(ListNode head) {
