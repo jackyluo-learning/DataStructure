@@ -43,16 +43,17 @@ public class GraphTraverse {
 
     @Test
     public void test(){
-        Graph g = new SiGraph(4);
+        Graph siGraph = new SiGraph(4);
 
-        g.addEdge(0, 1);
-        g.addEdge(0, 2);
-        g.addEdge(1, 2);
-        g.addEdge(2, 0);
-        g.addEdge(2, 3);
-        g.addEdge(3, 3);
-        g.printGrapth();
-        System.out.println("Breath First Search: "+BFS(g, 2));
-        System.out.println("Depth First Search: "+DFS(g, 0));
+        siGraph.addEdge(0, 1);
+        siGraph.addEdge(0, 2);
+        siGraph.addEdge(1, 2);
+        siGraph.addEdge(2, 0);
+        siGraph.addEdge(2, 3);
+        siGraph.addEdge(3, 3);
+        siGraph.printGraph();
+        System.out.println("Breath First Search: "+BFS(siGraph, 0));
+        System.out.println("Depth First Search: "+DFS(siGraph, 0));
+
     }
 }
