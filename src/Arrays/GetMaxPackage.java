@@ -1,6 +1,5 @@
 package Arrays;
 
-import com.sun.xml.internal.xsom.XSUnionSimpleType;
 import org.junit.Assert;
 import org.junit.Test;
 
