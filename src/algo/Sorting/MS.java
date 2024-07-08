@@ -18,14 +18,14 @@ public class MS {
         = nT(1)+nlog2n*f(n)
         = O(n*logn)
      */
-    public static int[] merageSort(int[] inputArray) {
+    public static int[] mergeSort(int[] inputArray) {
         int[] workArray = Arrays.copyOf(inputArray, inputArray.length);
         int len = inputArray.length;
         if (len < 2) return workArray;
         int mid = len / 2;
         int[] left = Arrays.copyOfRange(inputArray, 0, mid);
         int[] right = Arrays.copyOfRange(inputArray, mid, len);
-        return merge(merageSort(left), merageSort(right));
+        return merge(mergeSort(left), mergeSort(right));
     }
 
     private static int[] merge(int[] left, int[] right) {

@@ -1,10 +1,11 @@
-package algo;
+package algo.Search.TwoPointers.OppositeTwoPointers;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class TwoSum {
@@ -19,15 +20,15 @@ public class TwoSum {
 
     @Test
     public void test(){
-        Assert.assertEquals(Arrays.toString(new int[]{3, 4}), Arrays.toString(twoSum1(new int[]{2,4,2,5,6}, 11)));
-        Assert.assertEquals(Arrays.toString(new int[]{3, 4}), Arrays.toString(twoSum2(new int[]{2,4,6,23,56}, 29)));
+        Assert.assertEquals(Arrays.toString(new int[]{3, 4}), Arrays.toString(twoSumWithNotSorted(new int[]{2,4,2,5,6}, 11)));
+        Assert.assertEquals(Arrays.toString(new int[]{3, 4}), Arrays.toString(twoSumWithSorted(new int[]{2,4,6,23,56}, 29)));
     }
 
-    public int[] twoSum1(int[] nums, int target){
+    public int[] twoSumWithNotSorted(int[] nums, int target){
         /*
-        if the array is not sorted
+        if the array is not sorted, and no duplicate number in the array.
          */
-        HashMap<Integer, Integer> numbers = new HashMap<>();
+        Map<Integer, Integer> numbers = new HashMap<>();
         int[] result = new int[2];
         int len = nums.length;
         for (int i = 0; i < len; i++) {
@@ -42,13 +43,14 @@ public class TwoSum {
         return result;
     }
 
-    public int[] twoSum2(int[] nums, int target){
+    public int[] twoSumWithSorted(int[] nums, int target){
         /*
         if the array is sorted in ascend order
          */
+        if(nums == null) return new int[0];
         int len = nums.length;
         int[] result = new int[2];
-        if (nums == null || len < 2) return result;
+        if (len < 2) return result;
         int start = 0;
         int end = len - 1;
         while (start < end){

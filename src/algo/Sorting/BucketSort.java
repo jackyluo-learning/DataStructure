@@ -53,7 +53,7 @@ public class BucketSort {
         }
         int count = 0;
         for (ArrayList<Integer> each : sortList) {
-            if (each != null && each.size() > 0) {
+            if (each != null && !each.isEmpty()) {
                 for (Integer integer : each) {
                     result[count] = integer;
                     count++;

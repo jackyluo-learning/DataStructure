@@ -55,7 +55,7 @@ public class Test {
 
     @org.junit.Test
     public void testMS(){
-        resultArray = MS.merageSort(testArray);
+        resultArray = MS.mergeSort(testArray);
         Assert.assertArrayEquals(a, resultArray);
     }
 
