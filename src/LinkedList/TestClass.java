@@ -7,9 +7,9 @@ public class TestClass {
 
     @Test
     public void test () {
-        /**
-         * ["LRUCache","put","put","get","put","get","put","get","get","get"]
-         * [[2],[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]
+        /*
+          ["LRUCache","put","put","get","put","get","put","get","get","get"]
+          [[2],[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]
          */
         LRU lru = new LRU(2);
         lru.put(1,1);
