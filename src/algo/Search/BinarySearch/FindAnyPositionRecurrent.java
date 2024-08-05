@@ -1,5 +1,7 @@
 package algo.Search.BinarySearch;
 
+import java.util.Arrays;
+
 /**
  * 递归式查找target
  */
@@ -10,18 +12,18 @@ public class FindAnyPositionRecurrent implements BinarySearchStrategy{
     }
 
     private int binarySearchRecurrent(int[] arr, int start, int end, int target) {
-        if (start > end) {
+        if (arr[start] == target) return start;
+        if (arr[end] == target) return end;
+        if (start + 1 >= end) {
             return -1;
         }
         int mid = start + (end - start) / 2;
         if (target == arr[mid]) return mid;
         else if (target < arr[mid]) {
-            end = mid-1;
-            return binarySearchRecurrent(arr, start, end, target);
+            return binarySearchRecurrent(arr, start, mid, target);
         }
         else{
-            start = mid+1;
-            return binarySearchRecurrent(arr, start, end, target);
+            return binarySearchRecurrent(arr, mid, end, target);
         }
     }
 }
